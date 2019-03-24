@@ -26,7 +26,7 @@ class Aguacate {
 		this.ph = 6;
 		this.tc = 1;
 		this.contadorViva = 0;
-		this.produccion = [];
+		this.produccion = [ 0 ];
 		this.produccion_total = 0;
 	}
 
@@ -153,7 +153,7 @@ class Aguacate {
 	}
 
 	producir() {
-		if (this.alturas[this.alturas.length - 1] >= 540) {
+		if (this.alturas[this.mes] >= 540) {
 			if (this.mes % 12 <= 5) {
 				const exito = randomInRange(43, 80) / 100;
 				const produccion = exito * parseInt(812.5 / 5);
@@ -162,7 +162,7 @@ class Aguacate {
 				this.produccion.push(0);
 			}
 			this.aux++;
-		} else if (this.alturas[this.alturas.length - 1] >= 1750) {
+		} else if (this.alturas[this.mes] >= 1750) {
 			if (this.mes % 12 <= 5) {
 				const exito = randomInRange(20, 80) / 100;
 				const produccion = exito * parseInt(812.5 / 5);
