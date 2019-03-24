@@ -139,14 +139,19 @@ class Aguacate {
 
 	Tc() {
 		if (5.5 <= this.ph && 6.5 >= this.ph) {
+			//pH ideal y muy bueno
 			this.tc = 1;
 		} else if ((5 <= this.ph && this.ph < 5.5) || (6.5 < this.ph && this.ph <= 7)) {
+			//pH bueno
 			this.tc = 0.8;
 		} else if ((4.5 <= this.ph && this.ph < 5) || (7 < this.ph && this.ph <= 7.5)) {
+			//pH ragula
 			this.tc = 0.6;
 		} else if ((4 <= this.ph && this.ph < 4.5) || (7.5 < this.ph && this.ph <= 8)) {
+			// pH malo
 			this.tc = 0.5;
 		} else {
+			// pH muy malo
 			this.tc = 0;
 			this.contadorViva++;
 		}
