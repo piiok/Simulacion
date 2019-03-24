@@ -19,15 +19,15 @@ function randomInRange(start, end) {
 
 class Aguacate {
 	constructor() {
-		this.alturas = [ 0 ];
-		this.altura = 0;
-		this.meses = [ 0 ];
-		this.mes = 1;
-		this.ph = 6;
-		this.tc = 1;
-		this.contadorViva = 0;
-		this.produccion = [ 0 ];
-		this.produccion_total = 0;
+		this.alturas = [ 0 ]; // array con los valores de la altura para cada iteracion
+		this.altura = 0; // altura maxima que el arbol alcanzo
+		this.meses = [ 0 ]; // array de tiempo [0, 1, 2, ... 360] (iteracionces)
+		this.mes = 1; //iteracion acual
+		this.ph = 6; // nivel de pH
+		this.tc = 1; // tasa de creciemiento (depende del ph en cada iteracion)
+		this.contadorViva = 0; // contador para saber si esta muerta, si es >=3 la plata esta muerta
+		this.produccion = [ 0 ]; // array con la produccion en cada iteracion
+		this.produccion_total = 0; // produccion total en la vida de la plata
 	}
 
 	pH(agua, abono) {
