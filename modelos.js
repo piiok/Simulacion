@@ -94,7 +94,7 @@ class Aguacate {
 	}
 
 	simulacion(agua, abono) {
-		if (this.contadorViva != 3) {
+		if (this.contadorViva < 3) {
 			this.pH(agua, abono);
 			this.Tc();
 			switch (true) {
@@ -141,15 +141,19 @@ class Aguacate {
 		if (5.5 <= this.ph && 6.5 >= this.ph) {
 			//pH ideal y muy bueno
 			this.tc = 1;
+			this.contadorViva = 0;
 		} else if ((5 <= this.ph && this.ph < 5.5) || (6.5 < this.ph && this.ph <= 7)) {
 			//pH bueno
 			this.tc = 0.8;
+			this.contadorViva = 0;
 		} else if ((4.5 <= this.ph && this.ph < 5) || (7 < this.ph && this.ph <= 7.5)) {
 			//pH ragula
 			this.tc = 0.6;
+			this.contadorViva = 0;
 		} else if ((4 <= this.ph && this.ph < 4.5) || (7.5 < this.ph && this.ph <= 8)) {
 			// pH malo
 			this.tc = 0.5;
+			this.contadorViva = 0;
 		} else {
 			// pH muy malo
 			this.tc = 0;
@@ -158,7 +162,7 @@ class Aguacate {
 	}
 
 	producir() {
-		if (this.alturas[this.mes] >= 540) {
+		if (this.alturas[this.mes] >= 540 && this.alturas[this.mes] < 1750) {
 			if (this.mes % 12 <= 5) {
 				const exito = randomInRange(43, 80) / 100;
 				const produccion = exito * parseInt(812.5 / 5);
@@ -169,7 +173,7 @@ class Aguacate {
 			this.aux++;
 		} else if (this.alturas[this.mes] >= 1750) {
 			if (this.mes % 12 <= 5) {
-				const exito = randomInRange(20, 80) / 100;
+				const exito = randomInRange(20, 43) / 100;
 				const produccion = exito * parseInt(812.5 / 5);
 				this.produccion.push(produccion);
 			} else {
@@ -189,8 +193,13 @@ class Aguacate {
 }
 
 var aguacate = new Aguacate();
-for (let index = 1; index <= 360; index++) {
+for (let index = 1; index <= 144; index++) {
 	aguacate.simulacion(34, 250 + index * 83.3);
+	console.log(aguacate.ph);
+}
+for (let index = 145; index <= 360; index++) {
+	aguacate.simulacion(34, 12245.2);
+	console.log(aguacate.ph);
 }
 aguacate.producido();
 
