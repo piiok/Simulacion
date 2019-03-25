@@ -1,163 +1,166 @@
 var aguacate = new Aguacate(); //Simulacion actual
+var aguacateR = new Aguacate(); //Simulacion randomica
 
-function imagen(){
-    var altura = aguacate.alturas[aguacate.alturas.length - 1];
-    var frutos = aguacate.produccion[aguacate.produccion.length - 1];
-    var str= "./imagenes/";
+function imagen() {
+	var altura = aguacate.alturas[aguacate.alturas.length - 1];
+	var frutos = aguacate.produccion[aguacate.produccion.length - 1];
+	var str = './imagenes/';
 
-    //Tipo de planta segun altura
-    if(altura >= 540){
-        if (frutos > 0) {
-            str += "Planta4";
-        } else {
-            str += "Planta3";
-        }
-    }else{
-        if (altura >= 260 && altura < 540) {
-            str += "Planta2";
-        }else{
-            if (altura > 20 && altura < 260 ) {
-                str += "Planta1";
-            } else {
-                if (aguacate.mes == 1 && altura == 20) {
-                    str += "Planta0";
-                }
-            }
-        }
-    }
+	//Tipo de planta segun altura
+	if (altura >= 540) {
+		if (frutos > 0) {
+			str += 'Planta4';
+		} else {
+			str += 'Planta3';
+		}
+	} else {
+		if (altura >= 260 && altura < 540) {
+			str += 'Planta2';
+		} else {
+			if (altura > 20 && altura < 260) {
+				str += 'Planta1';
+			} else {
+				if (aguacate.mes == 1 && altura == 20) {
+					str += 'Planta0';
+				}
+			}
+		}
+	}
 
-    //Color de la planta segun pH
-    //En contruccion
+	//Color de la planta segun pH
+	//En contruccion
 
-    return str+".png";
+	return str + '.png';
 }
 
-function actualizar(){
-    src = imagen();
-    $("#planta").attr('src',src);
-    imageZoom("planta", "visor");
-    $("#altura").html(" "+aguacate.alturas[aguacate.alturas.length - 1]+" Cm");
-    $("#nroFrutos").html(" "+aguacate.produccion[aguacate.produccion.length - 1]);
-    $("#tc").html(" "+aguacate.tc);
-    $("#viva").html(" "+(aguacate.contadorViva>=3)?" No":" Si");
-    $("#numMes").html(""+aguacate.mes); 
+function actualizar() {
+	src = imagen();
+	$('#planta').attr('src', src);
+	imageZoom('planta', 'visor');
+	$('#altura').html(' ' + aguacate.alturas[aguacate.alturas.length - 1] + ' cm');
+	$('#nroFrutos').html(' ' + aguacate.produccion[aguacate.produccion.length - 1]);
+	$('#tc').html(' ' + aguacate.tc);
+	vida = aguacate.contadorViva >= 3 ? ' Muerta <i class="fas fa-skull"></i>' : ' Viva <i class="fas fa-grin-beam">';
+	$('#vida').html(' ' + vida);
+	$('#numMes').html('' + aguacate.mes);
 }
 
-function iterar(){
-    aguacate.simulacion( parseFloat($("#agua").value) , parseFloat($("#abono").value ));
-    actualizar();
-    return false;
+function iterar() {
+	aguacate.simulacion(parseFloat($('#agua').val()), parseFloat($('#abono').val()));
+	actualizar();
+	return false;
 }
 
-function reset(){
-    aguacate = new Aguacate();
-    actualizar();
+function reset() {
+	aguacate = new Aguacate();
+	actualizar();
 }
 
-$(document).ready(function(){
+$(document).ready(function() {
+	document.getElementById('form').addEventListener('submit', function() {
+		iterar();
+		return false;
+	});
+	sRandom();
 
-    document.getElementById('form').addEventListener('submit',function(){ iterar(); return false; });
+	$('#resetB').click(function() {
+		$('#confirm').modal();
+	});
 
-    sRandom();
+	$('#estadisticas').click(function() {
+		[ data, layout ] = sActual();
 
-    $("#resetB").click(function(){
-        $("#confirm").modal();
-    });
-
-    $("#estadisticas").click(function(){
-        [data , layout] = sActual();
-        
-        Plotly.newPlot('grafica', data, layout);
-        $("#myModal").modal();
-    });
+		Plotly.newPlot('grafica', data, layout);
+		$('#myModal').modal();
+	});
+	$('#tool1').tooltip();
+	$('#tool2').tooltip();
 });
 
 // ---------------------------- Graficas--------------------
 var dataR, layoutR;
 
-function sRandom(){
-    var aguacateR = new Aguacate();
-    for (let index = 1; index <= 360; index++) {
-        aguacateR.simulacion(randomInRange(28,40), 250 + index * 83.3);
-    }
-    aguacateR.producido();
+function sRandom() {
+	aguacateR = new Aguacate();
+	for (let index = 1; index <= 144; index++) {
+		aguacateR.simulacion(randomInRange(28, 40), 250 + (index - 1) * randomInRange(793, 873) / 10);
+	}
+	for (let index = 145; index <= 360; index++) {
+		aguacateR.simulacion(randomInRange(28, 40), randomInRange(12241.2, 12249.2) / 10);
+	}
+	aguacateR.producido();
 
-    var traceR = {
-        x: aguacateR.meses,
-        y: aguacateR.produccion,
-        type: 'scatter',
-        name: 'Produccion de aguacates'
-    };
+	var traceR = {
+		x: aguacateR.meses,
+		y: aguacateR.produccion,
+		type: 'scatter',
+		name: 'Produccion de aguacates'
+	};
 
-    var hR = {
-        x: aguacateR.meses,
-        y: aguacateR.alturas,
-        type: 'scatter',
-        name: 'Crecimiento planta de aguacate'
-    };
+	var hR = {
+		x: aguacateR.meses,
+		y: aguacateR.alturas,
+		type: 'scatter',
+		name: 'Crecimiento planta de aguacate'
+	};
 
-    layoutR = {
-        title: 'Simulacion Randomica',
-        xaxis: {
-            title: 'Tiempo'
-        },
-        yaxis: {
-            title: 'Altura/Produccion'
-        }
-    };
+	layoutR = {
+		title: 'Simulacion Randomica',
+		xaxis: {
+			title: 'Tiempo'
+		},
+		yaxis: {
+			title: 'Altura/Produccion'
+		}
+	};
 
-    var labelsR = [ 'Television', 'Newspaper', 'Internet', 'Radio' ];
-
-    dataR = [ traceR , hR ];
-    showRandom();
+	dataR = [ traceR, hR ];
+	showRandom();
 }
 
-function sActual(){
-    $("#randomB").css({'display':'none'});
-    aguacate.producido();
-    var trace = {
-        x: aguacate.meses,
-        y: aguacate.produccion,
-        type: 'scatter',
-        name: 'Produccion de aguacates'
-    };
-    
-    var h = {
-        x: aguacate.meses,
-        y: aguacate.alturas,
-        type: 'scatter',
-        name: 'Crecimiento planta de aguacate'
-    };
-    
-    var layout = {
-        title: 'Simulacion Actual',
-        xaxis: {
-            title: 'Tiempo'
-        },
-        yaxis: {
-            title: 'Altura/Produccion'
-        }
-    };
-    
-    var labels = [ 'Television', 'Newspaper', 'Internet', 'Radio' ];
-    
-    var data = [ trace, h ];
+function sActual() {
+	$('#randomB').css({ display: 'none' });
+	aguacate.producido();
+	var trace = {
+		x: aguacate.meses,
+		y: aguacate.produccion,
+		type: 'scatter',
+		name: 'Produccion de aguacates'
+	};
 
-    return [data, layout]
+	var h = {
+		x: aguacate.meses,
+		y: aguacate.alturas,
+		type: 'scatter',
+		name: 'Crecimiento planta de aguacate'
+	};
+
+	var layout = {
+		title: 'Simulacion Actual',
+		xaxis: {
+			title: 'Tiempo'
+		},
+		yaxis: {
+			title: 'Altura/Produccion'
+		}
+	};
+
+	var data = [ trace, h ];
+
+	return [ data, layout ];
 }
 
-function showRandom(){
-    $("#randomB").css({'display':'block'});
-    Plotly.newPlot('grafica', dataR, layoutR);
+function showRandom() {
+	$('#randomB').css({ display: 'block' });
+	Plotly.newPlot('grafica', dataR, layoutR);
 }
 
-function showIdeal(){
-    $("#randomB").css({'display':'none'});
-    Plotly.newPlot('grafica', dataI, layoutI);
+function showIdeal() {
+	$('#randomB').css({ display: 'none' });
+	Plotly.newPlot('grafica', dataI, layoutI);
 }
 
-function showActual(){
-    [data , layout] = sActual();
-    Plotly.newPlot('grafica', data, layout);
+function showActual() {
+	[ data, layout ] = sActual();
+	Plotly.newPlot('grafica', data, layout);
 }
-

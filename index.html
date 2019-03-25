@@ -15,6 +15,8 @@
 
         <link rel="stylesheet" href="./css/inicio.css">
 
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> <!-- awesome icons -->
+
         <style>
 
         </style>
@@ -32,20 +34,20 @@
                 Altura: <span id="altura"> 20 Cm</span> <br>
                 Nro Frutos: <span id="nroFrutos"> 0 </span> <br>
                 Tasa de crecimiento: <span id="tc"> 1 </span> <br>
-                Viva: <span id="vida"> Si </span> <br>
+                Estado: <span id="vida"> Viva <i class="fas fa-grin-beam"></i></span> <br>
             </div>  
 
             <div class="subtitulo"> Simular </div> 
 
             <div class="contenido center"> 
                 <form onsubmit="return false" id="form">
-                    <div class="input-group p-b-10">
+                    <div data-toggle="tooltip" data-placement="right" title="Litros" class="input-group p-b-10" id="tool1">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-tint"></i> Agua </span>
-                        <input id="agua" type="number" min="0" class="form-control" name="email" placeholder="Litros" required>
+                        <input id="agua" type="number" min="0" class="form-control" placeholder="Litros" required>
                     </div>
-                    <div class="input-group p-b-10">
+                    <div data-toggle="tooltip" data-placement="right" title="Gramos" class="input-group p-b-10" id="tool2">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-grain"></i> Abono </span>
-                        <input id="abono" type="number" min="0" class="form-control" name="email" placeholder="Gramos" required >
+                        <input id="abono" type="number" min="0" class="form-control" placeholder="Gramos" required >
                     </div>
                     <!-- <input type="button" > -->
                     <!-- <a onlclick="iterar()"> -->
