@@ -14,6 +14,9 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     </head>
     <style>
+        #randomB{
+            display: none;
+        }
         body{
             margin:0px;
             /* background-color: #79E2F5; */
@@ -113,7 +116,7 @@
             <div class="contenido">
                 <div class="row">
                     <div class="col-sm-6">
-                        <button class="btn btn-danger btn-lg" >
+                        <button class="btn btn-danger btn-lg" onclick="">
                                 <span class="glyphicon glyphicon-repeat"></span> Reiniciar
                         </button>
                     </div>
@@ -135,10 +138,14 @@
                     <h4 class="modal-title">Estadisticas</h4>
                     </div>
                     <div class="modal-body">
-                        <div id="myDiv" ></div>
+                        <div id="sActual"></div>
+                        <button id="randomB" type="button" class="btn btn-danger" onclick="sRandom()">Generar randomica</button>
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="showRandom()">S. Randomica</button>
+                        <button type="button" class="btn btn-primary" onclick="showIdeal()">S. Ideal</button>
+                        <button type="button" class="btn btn-primary" onclick="showActual()">S. Actual</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

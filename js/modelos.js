@@ -188,10 +188,36 @@ class Aguacate {
 	}
 }
 
-var aguacate = new Aguacate();
+var aguacateI = new Aguacate();
 for (let index = 1; index <= 360; index++) {
-	aguacate.simulacion(34, 250 + index * 83.3);
+	aguacateI.simulacion(34, 250 + index * 83.3);
 }
-aguacate.producido();
+aguacateI.producido();
 
+var traceI = {
+	x: aguacateI.meses,
+	y: aguacateI.produccion,
+	type: 'scatter',
+	name: 'Produccion de aguacates'
+};
 
+var hI = {
+	x: aguacateI.meses,
+	y: aguacateI.alturas,
+	type: 'scatter',
+	name: 'Crecimiento planta de aguacate'
+};
+
+var layoutI = {
+	title: 'Simulacion Ideal',
+	xaxis: {
+		title: 'Tiempo'
+	},
+	yaxis: {
+		title: 'Altura/Produccion'
+	}
+};
+
+var labelsI = [ 'Television', 'Newspaper', 'Internet', 'Radio' ];
+
+var dataI = [ traceI , hI ];
