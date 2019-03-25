@@ -14,56 +14,11 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
         <link rel="stylesheet" href="./css/inicio.css">
-    </head>
-        <style>
-            * {box-sizing: border-box;}
-            #cielo{
-                display: inline-block;
-                z-index: 0;
-                background-color: #BEF1FA;
-                width: calc(100% - 400px);
-                height: 100%;
-                position:absolute;
-                top: 0px;
-            }
-            #planta{
-                position: fixed;
-                bottom: 20px;
-                left: calc(50% + 200px);
-                height: 50px;
-                z-index: 6;
-                cursor: zoom-in;
-            }
-            .img-zoom-lens {
-                position: absolute;
-                /* border: 1px solid #d4d4d4; */
-                /*set the size of the lens:*/
-                width: 40px;
-                height: 40px;
-                }
-            #visor{
-                position: fixed;
-                z-index: 7;
-                bottom: 5px;
-                left: 405px;
-                width: 150px;
-                height: 150px;
-                background-color: #BEF1FA;
-                border-radius: 75px;
-                border: gray 1px solid;
 
-            }
-            #tierra{
-                position: fixed;
-                bottom: 0px;
-                left: 400px;
-                width: calc(100% - 400px);
-                height: 30;
-                background-repeat: repeat;
-                background-image: url("./imagenes/tierra.png");
-                
-            }
+        <style>
+
         </style>
+    </head>
     <body>
         <div id="mes">
             Mes #<span id="numMes">1</span>
@@ -76,26 +31,28 @@
             <div class="contenido">
                 Altura: <span id="altura"> 20 Cm</span> <br>
                 Nro Frutos: <span id="nroFrutos"> 0 </span> <br>
-                Tasa de crecimiento: <span id="altura"> 1 </span> <br>
-                Viva: <span id="altura"> Si </span> <br>
+                Tasa de crecimiento: <span id="tc"> 1 </span> <br>
+                Viva: <span id="vida"> Si </span> <br>
             </div>  
 
             <div class="subtitulo"> Simular </div> 
 
             <div class="contenido center"> 
-                <form>
+                <form onsubmit="return false" id="form">
                     <div class="input-group p-b-10">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-tint"></i> Agua </span>
                         <input id="agua" type="number" min="0" class="form-control" name="email" placeholder="Litros" required>
                     </div>
                     <div class="input-group p-b-10">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-grain"></i> Abono </span>
-                        <input id="agua" type="number" min="0" class="form-control" name="email" placeholder="Gramos" required >
+                        <input id="abono" type="number" min="0" class="form-control" name="email" placeholder="Gramos" required >
                     </div>
                     <!-- <input type="button" > -->
-                    <button class="btn btn-primary btn-lg" >
-                            <span class="glyphicon glyphicon-play-circle"></span>  Siguiente Mes
-                    </button>
+                    <!-- <a onlclick="iterar()"> -->
+                        <button class="btn btn-primary btn-lg" >
+                                <span class="glyphicon glyphicon-play-circle"></span>  Siguiente Mes
+                        </button>
+                    <!-- </a> -->
                 </form>
             </div>   
             
@@ -103,7 +60,7 @@
             <div class="contenido">
                 <div class="row">
                     <div class="accionesBtns m-b-10">
-                        <button  class="btn btn-danger btn-lg p-b-10 center-block" onclick="aguacate = new Aguacate();actualizar();">
+                        <button  class="btn btn-danger btn-lg p-b-10 center-block" onclick="reset()">
                                 <span class="glyphicon glyphicon-repeat"></span> Reiniciar
                         </button>
                     </div>
@@ -119,6 +76,28 @@
         <img id="planta" src="./imagenes/Planta0.png" alt="">
         <div id="visor"></div>
         <div id="tierra"></div>
+          <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content" style="width: 730px !important">
+                    <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Estadisticas</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="grafica"></div>
+                        <button id="randomB" type="button" class="btn btn-danger center-block" onclick="sRandom()">Generar nueva randomica</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="showRandom()">S. Randomica</button>
+                        <button type="button" class="btn btn-primary" onclick="showIdeal()">S. Ideal</button>
+                        <button type="button" class="btn btn-primary" onclick="showActual()">S. Actual</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
           <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog">

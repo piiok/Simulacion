@@ -1,11 +1,37 @@
 var aguacate = new Aguacate(); //Simulacion actual
 
 function actualizar(){
-    
+    $("#altura").html(" "+aguacate.alturas[aguacate.alturas.length - 1]+" Cm");
+    $("#nroFrutos").html(" "+aguacate.produccion[aguacate.produccion.length - 1]);
+    $("#tc").html(" "+aguacate.tc);
+    $("#viva").html(" "+(aguacate.contadorViva>=3)?" No":" Si");
+    $("#numMes").html(""+aguacate.mes); 
 }
 
+function iterar(){
+    aguacate.simulacion( parseFloat($("#agua").value) , parseFloat($("#abono").value ));
+    actualizar();
+    return false;
+}
 
+function reset(){
+    aguacate = new Aguacate();
+    actualizar();
+}
 
+$(document).ready(function(){
+
+    document.getElementById('form').addEventListener('submit',function(){ iterar(); return false; });
+
+    sRandom();
+
+    $("#estadisticas").click(function(){
+        [data , layout] = sActual();
+        
+        Plotly.newPlot('grafica', data, layout);
+        $("#myModal").modal();
+    });
+});
 
 // ---------------------------- Graficas--------------------
 var dataR, layoutR;
@@ -96,14 +122,3 @@ function showActual(){
     Plotly.newPlot('grafica', data, layout);
 }
 
-$(document).ready(function(){
-    
-    sRandom();
-
-    $("#estadisticas").click(function(){
-        [data , layout] = sActual();
-        
-        Plotly.newPlot('grafica', data, layout);
-        $("#myModal").modal();
-    });
-});
