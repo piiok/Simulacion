@@ -16,16 +16,53 @@
         <link rel="stylesheet" href="./css/inicio.css">
     </head>
         <style>
-            #planta{
+            * {box-sizing: border-box;}
+            #cielo{
                 display: inline-block;
                 z-index: 0;
-                background-color: #0FA9C4;
+                background-color: #BEF1FA;
                 width: calc(100% - 400px);
                 height: 100%;
                 position:absolute;
                 top: 0px;
             }
+            #planta{
+                position: fixed;
+                bottom: 20px;
+                left: calc(50% + 200px);
+                height: 50px;
+                z-index: 6;
+                cursor: zoom-in;
+            }
+            .img-zoom-lens {
+                position: absolute;
+                /* border: 1px solid #d4d4d4; */
+                /*set the size of the lens:*/
+                width: 40px;
+                height: 40px;
+                }
+            #visor{
+                position: fixed;
+                z-index: 7;
+                bottom: 5px;
+                left: 405px;
+                width: 150px;
+                height: 150px;
+                background-color: #BEF1FA;
+                border-radius: 75px;
+                border: gray 1px solid;
 
+            }
+            #tierra{
+                position: fixed;
+                bottom: 0px;
+                left: 400px;
+                width: calc(100% - 400px);
+                height: 30;
+                background-repeat: repeat;
+                background-image: url("./imagenes/tierra.png");
+                
+            }
         </style>
     <body>
         <div id="mes">
@@ -78,9 +115,10 @@
                 </div>
             </div>
         </div>
-        <div id="planta">
-
-        </div>
+        <div id="cielo"></div>
+        <img id="planta" src="./imagenes/Planta0.png" alt="">
+        <div id="visor"></div>
+        <div id="tierra"></div>
           <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog">
@@ -106,5 +144,6 @@
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
         <script src="./js/modelos.js"></script> 
         <script src="./js/inicio.js"></script>
+        <script src="./js/zoomImage.js"></script>
     </body>
 </html>
