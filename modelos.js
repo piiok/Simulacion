@@ -19,14 +19,14 @@ function randomInRange(start, end) {
 
 class Aguacate {
 	constructor() {
-		this.alturas = [ 0 ]; // array con los valores de la altura para cada iteracion
+		this.alturas = [20]; // array con los valores de la altura para cada iteracion
 		this.altura = 0; // altura maxima que el arbol alcanzo
-		this.meses = [ 0 ]; // array de tiempo [0, 1, 2, ... 360] (iteracionces)
+		this.meses = [0]; // array de tiempo [0, 1, 2, ... 360] (iteracionces)
 		this.mes = 1; //iteracion acual
 		this.ph = 6; // nivel de pH
 		this.tc = 1; // tasa de creciemiento (depende del ph en cada iteracion)
 		this.contadorViva = 0; // contador para saber si esta muerta, si es >=3 la plata esta muerta
-		this.produccion = [ 0 ]; // array con la produccion en cada iteracion
+		this.produccion = [0]; // array con la produccion en cada iteracion
 		this.produccion_total = 0; // produccion total en la vida de la plata
 	}
 
@@ -102,17 +102,17 @@ class Aguacate {
 				case this.mes <= 48:
 					this.alturas.push(
 						this.alturas[this.mes - 1] +
-							this.tc * (Math.exp(0.131 * this.mes) - 1 - this.alturas[this.mes - 1])
+						this.tc * (20 * Math.exp(0.06866326804 * this.mes) - this.alturas[this.mes - 1])
 					);
 					this.altura =
 						this.alturas[this.mes - 1] +
-						this.tc * (Math.exp(0.131 * this.mes) - 1 - this.alturas[this.mes - 1]);
+						this.tc * (20 * Math.exp(0.06866326804 * this.mes) - this.alturas[this.mes - 1]);
 					break;
 				// Etapa produccion
 				case this.mes <= 144:
 					this.alturas.push(
 						this.alturas[this.mes - 1] +
-							this.tc * (1016 * Math.log(this.mes) - 3300 - this.alturas[this.mes - 1])
+						this.tc * (1016 * Math.log(this.mes) - 3300 - this.alturas[this.mes - 1])
 					);
 					this.altura =
 						this.alturas[this.mes - 1] +
@@ -122,7 +122,7 @@ class Aguacate {
 				case this.mes <= 360:
 					this.alturas.push(
 						this.alturas[this.mes - 1] +
-							this.tc * (1364 * Math.log(this.mes) - 5029.8 - this.alturas[this.mes - 1])
+						this.tc * (1364 * Math.log(this.mes) - 5029.8 - this.alturas[this.mes - 1])
 					);
 					this.altura =
 						this.alturas[this.mes - 1] +
@@ -198,7 +198,7 @@ for (let index = 1; index <= 144; index++) {
 	console.log(aguacate.ph);
 }
 for (let index = 145; index <= 360; index++) {
-	aguacate.simulacion(34, 12245.2);
+	aguacate.simulacion(34, 12245.1);
 	console.log(aguacate.ph);
 }
 aguacate.producido();
@@ -227,8 +227,8 @@ var layout = {
 	}
 };
 
-var labels = [ 'Television', 'Newspaper', 'Internet', 'Radio' ];
+var labels = ['Television', 'Newspaper', 'Internet', 'Radio'];
 
-var data = [ trace, h ];
+var data = [trace, h];
 
 Plotly.newPlot('myDiv', data, layout);
