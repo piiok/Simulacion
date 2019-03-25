@@ -25,6 +25,10 @@ $(document).ready(function(){
 
     sRandom();
 
+    $("#resetB").click(function(){
+        $("#confirm").modal();
+    });
+
     $("#estadisticas").click(function(){
         [data , layout] = sActual();
         

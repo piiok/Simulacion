@@ -60,7 +60,7 @@
             <div class="contenido">
                 <div class="row">
                     <div class="accionesBtns m-b-10">
-                        <button  class="btn btn-danger btn-lg p-b-10 center-block" onclick="reset()">
+                        <button id="resetB"  class="btn btn-danger btn-lg p-b-10 center-block">
                                 <span class="glyphicon glyphicon-repeat"></span> Reiniciar
                         </button>
                     </div>
@@ -98,24 +98,21 @@
                 </div>
             </div>
         </div>
-          <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
+        <!-- Modal -->
+        <div class="modal fade" id="confirm" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content-->
-                <div class="modal-content" style="width: 730px !important">
+                <div class="modal-content">
                     <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Estadisticas</h4>
+                    <h4 class="modal-title">Reiniciar simulacion</h4>
                     </div>
-                    <div class="modal-body">
-                        <div id="grafica"></div>
-                        <button id="randomB" type="button" class="btn btn-danger center-block" onclick="sRandom()">Generar nueva randomica</button>
+                    <div class="modal-body center">
+                        <p>¿Esta seguro que desea reiniciar la simulacion?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="showRandom()">S. Randomica</button>
-                        <button type="button" class="btn btn-primary" onclick="showIdeal()">S. Ideal</button>
-                        <button type="button" class="btn btn-primary" onclick="showActual()">S. Actual</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" onclick="reset()" data-dismiss="modal">Si</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                     </div>
                 </div>
             </div>
