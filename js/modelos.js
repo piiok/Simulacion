@@ -19,24 +19,23 @@ function randomInRange(start, end) {
 
 class Aguacate {
 	constructor() {
-		this.alturas = [20]; // array con los valores de la altura para cada iteracion
+		this.alturas = [ 20 ]; // array con los valores de la altura para cada iteracion
 		this.altura = 0; // altura maxima que el arbol alcanzo
-		this.meses = [0]; // array de tiempo [0, 1, 2, ... 360] (iteracionces)
-		this.mes = 1; //iteracion acual
+		this.meses = [ 0 ]; // array de tiempo [0, 1, 2, ... 360] (iteracionces)
+		this.mes = 0; //iteracion acual
 		this.ph = 6; // nivel de pH
 		this.tc = 1; // tasa de creciemiento (depende del ph en cada iteracion)
 		this.contadorViva = 0; // contador para saber si esta muerta, si es >=3 la plata esta muerta
-		this.produccion = [0]; // array con la produccion en cada iteracion
+		this.produccion = [ 0 ]; // array con la produccion en cada iteracion
 		this.produccion_total = 0; // produccion total en la vida de la plata
 	}
 
 	pH(agua, abono) {
 		const idealAgua = 34;
 		const desvAgua = normalDist(idealAgua);
-
-		const idealAbono = this.mes > 144 ? 12245.2 : 250 + 83.3 * this.mes;
+		const idealAbono = this.mes > 144 ? 12245.2 : 250 + 83.3 * (this.mes - 1);
 		const desvAbono = normalDist(idealAbono);
-
+		console.log(this.mes, this.contadorViva);
 		this.phAgua(agua, idealAgua, desvAgua);
 		this.phAbono(abono, idealAbono, desvAbono);
 	}
@@ -94,6 +93,7 @@ class Aguacate {
 	}
 
 	simulacion(agua, abono) {
+		this.mes++;
 		if (this.contadorViva < 3) {
 			this.pH(agua, abono);
 			this.Tc();
@@ -102,7 +102,7 @@ class Aguacate {
 				case this.mes <= 48:
 					this.alturas.push(
 						this.alturas[this.mes - 1] +
-						this.tc * (20 * Math.exp(0.06866326804 * this.mes) - this.alturas[this.mes - 1])
+							this.tc * (20 * Math.exp(0.06866326804 * this.mes) - this.alturas[this.mes - 1])
 					);
 					this.altura =
 						this.alturas[this.mes - 1] +
@@ -112,7 +112,7 @@ class Aguacate {
 				case this.mes <= 144:
 					this.alturas.push(
 						this.alturas[this.mes - 1] +
-						this.tc * (1016 * Math.log(this.mes) - 3300 - this.alturas[this.mes - 1])
+							this.tc * (1016 * Math.log(this.mes) - 3300 - this.alturas[this.mes - 1])
 					);
 					this.altura =
 						this.alturas[this.mes - 1] +
@@ -122,7 +122,7 @@ class Aguacate {
 				case this.mes <= 360:
 					this.alturas.push(
 						this.alturas[this.mes - 1] +
-						this.tc * (1364 * Math.log(this.mes) - 5029.8 - this.alturas[this.mes - 1])
+							this.tc * (1364 * Math.log(this.mes) - 5029.8 - this.alturas[this.mes - 1])
 					);
 					this.altura =
 						this.alturas[this.mes - 1] +
@@ -132,9 +132,9 @@ class Aguacate {
 			this.producir();
 		} else {
 			this.alturas.push(this.altura);
+			this.produccion.push(0);
 		}
 		this.meses.push(this.mes);
-		this.mes++;
 	}
 
 	Tc() {
@@ -162,7 +162,9 @@ class Aguacate {
 	}
 
 	producir() {
-		if (this.alturas[this.mes] >= 540 && this.alturas[this.mes] < 1750) {
+		if (this.alturas[this.mes] < 540) {
+			this.produccion.push(0);
+		} else if (this.alturas[this.mes] >= 540 && this.alturas[this.mes] < 1750) {
 			if (this.mes % 12 <= 5) {
 				const exito = randomInRange(43, 80) / 100;
 				const produccion = exito * parseInt(812.5 / 5);
@@ -171,7 +173,7 @@ class Aguacate {
 				this.produccion.push(0);
 			}
 			this.aux++;
-		} else if (this.alturas[this.mes] >= 1750) {
+		} else if (this.alturas[this.mes] >= 1750 && this.alturas[this.mes] < 3000) {
 			if (this.mes % 12 <= 5) {
 				const exito = randomInRange(20, 43) / 100;
 				const produccion = exito * parseInt(812.5 / 5);
@@ -180,8 +182,6 @@ class Aguacate {
 				this.produccion.push(0);
 			}
 			this.aux++;
-		} else {
-			this.produccion.push(0);
 		}
 	}
 
@@ -193,8 +193,11 @@ class Aguacate {
 }
 
 var aguacateI = new Aguacate();
-for (let index = 1; index <= 360; index++) {
+for (let index = 0; index <= 144; index++) {
 	aguacateI.simulacion(34, 250 + index * 83.3);
+}
+for (let index = 145; index < 360; index++) {
+	aguacateI.simulacion(34, 12245.2);
 }
 aguacateI.producido();
 
@@ -222,6 +225,4 @@ var layoutI = {
 	}
 };
 
-var labelsI = [ 'Television', 'Newspaper', 'Internet', 'Radio' ];
-
-var dataI = [ traceI , hI ];
+var dataI = [ traceI, hI ];
