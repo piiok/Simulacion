@@ -12,71 +12,21 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="./css/inicio.css">
     </head>
-    <style>
-        #randomB{
-            display: none;
-        }
-        body{
-            margin:0px;
-            /* background-color: #79E2F5; */
-            background-color: white;
-        }
-        #titulo{
-            text-align: center;
-            font-size: 40px;
-            color:black;
-            font-family: 'Kaushan Script', cursive;
-            margin-bottom: 18px;
-        }
+        <style>
+            #planta{
+                display: inline-block;
+                z-index: 0;
+                background-color: #0FA9C4;
+                width: calc(100% - 400px);
+                height: 100%;
+                position:absolute;
+                top: 0px;
+            }
 
-        .subtitulo{
-            color:black;
-            background-color: rgb(0,0,0,0.2);  
-            /* color: rgb(255,2555,255,0.8); */
-            font-weight: bolder;
-            text-align: center;
-            font-size: 23px;
-        }
-
-        .contenido{
-            color:black;
-            background-color: rgb(0,0,0,0.1); 
-            font-weight: bolder;
-            font-size: 18px;
-            padding: 10px;
-            padding-left: 20px !important;
-
-        }
-
-        .p-b-10{
-            padding-bottom: 10px;
-        }
-
-        #mes{
-            font-family: 'Archivo Black', sans-serif;
-            font-weight: bolder;
-            text-align: center;
-            font-size: 30px;
-            position: fixed;
-            top: 0px;
-            right: 5px;
-
-        }
-        #datos{
-            width: 400px;
-            height:100%;
-            background-color: rgb(0,0,0,0.2);      
-            /* background-color: white; */
-            -webkit-box-shadow: 0px 0px 45px -9px rgba(0,0,0,0.75);
-            -moz-box-shadow: 0px 0px 45px -9px rgba(0,0,0,0.75);
-            box-shadow: 0px 0px 45px -9px rgba(0,0,0,0.75);      
-        }
-
-        .center{
-            text-align: center !important;
-        }
-    </style>
+        </style>
     <body>
         <div id="mes">
             Mes #<span id="numMes">1</span>
@@ -115,18 +65,21 @@
             <div class="subtitulo" >Acciones</div>
             <div class="contenido">
                 <div class="row">
-                    <div class="col-sm-6">
-                        <button class="btn btn-danger btn-lg" onclick="">
+                    <div class="accionesBtns m-b-10">
+                        <button  class="btn btn-danger btn-lg p-b-10 center-block" onclick="aguacate = new Aguacate();actualizar();">
                                 <span class="glyphicon glyphicon-repeat"></span> Reiniciar
                         </button>
                     </div>
-                    <div class="col-sm-6">
-                        <button id="estadisticas" class="btn btn-primary btn-lg" >
+                    <div class="accionesBtns m-b-10">
+                        <button id="estadisticas" class="btn btn-primary btn-lg p-b-10 center-block" >
                                 <span class="glyphicon glyphicon-stats"></span> Estadisticas
                         </button>
                     </div>
                 </div>
             </div>
+        </div>
+        <div id="planta">
+
         </div>
           <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
@@ -138,7 +91,7 @@
                     <h4 class="modal-title">Estadisticas</h4>
                     </div>
                     <div class="modal-body">
-                        <div id="sActual"></div>
+                        <div id="grafica"></div>
                         <button id="randomB" type="button" class="btn btn-danger center-block" onclick="sRandom()">Generar nueva randomica</button>
                     </div>
                     <div class="modal-footer">

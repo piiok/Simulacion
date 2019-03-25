@@ -1,4 +1,13 @@
 var aguacate = new Aguacate(); //Simulacion actual
+
+function actualizar(){
+    
+}
+
+
+
+
+// ---------------------------- Graficas--------------------
 var dataR, layoutR;
 
 function sRandom(){
@@ -74,17 +83,17 @@ function sActual(){
 
 function showRandom(){
     $("#randomB").css({'display':'block'});
-    Plotly.newPlot('sActual', dataR, layoutR);
+    Plotly.newPlot('grafica', dataR, layoutR);
 }
 
 function showIdeal(){
     $("#randomB").css({'display':'none'});
-    Plotly.newPlot('sActual', dataI, layoutI);
+    Plotly.newPlot('grafica', dataI, layoutI);
 }
 
 function showActual(){
     [data , layout] = sActual();
-    Plotly.newPlot('sActual', data, layout);
+    Plotly.newPlot('grafica', data, layout);
 }
 
 $(document).ready(function(){
@@ -94,7 +103,7 @@ $(document).ready(function(){
     $("#estadisticas").click(function(){
         [data , layout] = sActual();
         
-        Plotly.newPlot('sActual', data, layout);
+        Plotly.newPlot('grafica', data, layout);
         $("#myModal").modal();
     });
 });

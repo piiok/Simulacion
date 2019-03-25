@@ -19,15 +19,15 @@ function randomInRange(start, end) {
 
 class Aguacate {
 	constructor() {
-		this.alturas = [ 0 ];
-		this.altura = 0;
-		this.meses = [ 0 ];
-		this.mes = 1;
-		this.ph = 6;
-		this.tc = 1;
-		this.contadorViva = 0;
-		this.produccion = [ 0 ];
-		this.produccion_total = 0;
+		this.alturas = [20]; // array con los valores de la altura para cada iteracion
+		this.altura = 0; // altura maxima que el arbol alcanzo
+		this.meses = [0]; // array de tiempo [0, 1, 2, ... 360] (iteracionces)
+		this.mes = 1; //iteracion acual
+		this.ph = 6; // nivel de pH
+		this.tc = 1; // tasa de creciemiento (depende del ph en cada iteracion)
+		this.contadorViva = 0; // contador para saber si esta muerta, si es >=3 la plata esta muerta
+		this.produccion = [0]; // array con la produccion en cada iteracion
+		this.produccion_total = 0; // produccion total en la vida de la plata
 	}
 
 	pH(agua, abono) {
@@ -94,7 +94,7 @@ class Aguacate {
 	}
 
 	simulacion(agua, abono) {
-		if (this.contadorViva != 3) {
+		if (this.contadorViva < 3) {
 			this.pH(agua, abono);
 			this.Tc();
 			switch (true) {
@@ -102,17 +102,17 @@ class Aguacate {
 				case this.mes <= 48:
 					this.alturas.push(
 						this.alturas[this.mes - 1] +
-							this.tc * (Math.exp(0.131 * this.mes) - 1 - this.alturas[this.mes - 1])
+						this.tc * (20 * Math.exp(0.06866326804 * this.mes) - this.alturas[this.mes - 1])
 					);
 					this.altura =
 						this.alturas[this.mes - 1] +
-						this.tc * (Math.exp(0.131 * this.mes) - 1 - this.alturas[this.mes - 1]);
+						this.tc * (20 * Math.exp(0.06866326804 * this.mes) - this.alturas[this.mes - 1]);
 					break;
 				// Etapa produccion
 				case this.mes <= 144:
 					this.alturas.push(
 						this.alturas[this.mes - 1] +
-							this.tc * (1016 * Math.log(this.mes) - 3300 - this.alturas[this.mes - 1])
+						this.tc * (1016 * Math.log(this.mes) - 3300 - this.alturas[this.mes - 1])
 					);
 					this.altura =
 						this.alturas[this.mes - 1] +
@@ -122,7 +122,7 @@ class Aguacate {
 				case this.mes <= 360:
 					this.alturas.push(
 						this.alturas[this.mes - 1] +
-							this.tc * (1364 * Math.log(this.mes) - 5029.8 - this.alturas[this.mes - 1])
+						this.tc * (1364 * Math.log(this.mes) - 5029.8 - this.alturas[this.mes - 1])
 					);
 					this.altura =
 						this.alturas[this.mes - 1] +
@@ -141,15 +141,19 @@ class Aguacate {
 		if (5.5 <= this.ph && 6.5 >= this.ph) {
 			//pH ideal y muy bueno
 			this.tc = 1;
+			this.contadorViva = 0;
 		} else if ((5 <= this.ph && this.ph < 5.5) || (6.5 < this.ph && this.ph <= 7)) {
 			//pH bueno
 			this.tc = 0.8;
+			this.contadorViva = 0;
 		} else if ((4.5 <= this.ph && this.ph < 5) || (7 < this.ph && this.ph <= 7.5)) {
 			//pH ragula
 			this.tc = 0.6;
+			this.contadorViva = 0;
 		} else if ((4 <= this.ph && this.ph < 4.5) || (7.5 < this.ph && this.ph <= 8)) {
 			// pH malo
 			this.tc = 0.5;
+			this.contadorViva = 0;
 		} else {
 			// pH muy malo
 			this.tc = 0;
@@ -158,7 +162,7 @@ class Aguacate {
 	}
 
 	producir() {
-		if (this.alturas[this.mes] >= 540) {
+		if (this.alturas[this.mes] >= 540 && this.alturas[this.mes] < 1750) {
 			if (this.mes % 12 <= 5) {
 				const exito = randomInRange(43, 80) / 100;
 				const produccion = exito * parseInt(812.5 / 5);
@@ -169,7 +173,7 @@ class Aguacate {
 			this.aux++;
 		} else if (this.alturas[this.mes] >= 1750) {
 			if (this.mes % 12 <= 5) {
-				const exito = randomInRange(20, 80) / 100;
+				const exito = randomInRange(20, 43) / 100;
 				const produccion = exito * parseInt(812.5 / 5);
 				this.produccion.push(produccion);
 			} else {
