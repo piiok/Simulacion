@@ -1,4 +1,16 @@
 * {box-sizing: border-box;}
+
+.m2{
+    width: 730px !important;
+}
+
+@media (max-width: 750px){
+    .modal-content{
+        margin-right:calc(50% - 365px) !important;
+    }
+}
+
+
 #cielo{
     display: inline-block;
     z-index: 0;
