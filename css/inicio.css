@@ -34,18 +34,18 @@
     left:0px;
     /* border: 1px solid #d4d4d4; */
     /*set the size of the lens:*/
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     }
 #visor{
     position: fixed;
     z-index: 7;
     bottom: 5px;
     left: 405px;
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     background-color: #BEF1FA;
-    border-radius: 75px;
+    border-radius: 100px;
     border: gray 1px solid;
 
 }
