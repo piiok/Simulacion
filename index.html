@@ -1,0 +1,150 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, user-scalable=1">
+        <title>El Oro Verde</title>
+        <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    </head>
+    <style>
+        body{
+            margin:0px;
+            /* background-color: #79E2F5; */
+            background-color: white;
+        }
+        #titulo{
+            text-align: center;
+            font-size: 40px;
+            color:black;
+            font-family: 'Kaushan Script', cursive;
+            margin-bottom: 18px;
+        }
+
+        .subtitulo{
+            color:black;
+            background-color: rgb(0,0,0,0.2);  
+            /* color: rgb(255,2555,255,0.8); */
+            font-weight: bolder;
+            text-align: center;
+            font-size: 23px;
+        }
+
+        .contenido{
+            color:black;
+            background-color: rgb(0,0,0,0.1); 
+            font-weight: bolder;
+            font-size: 18px;
+            padding: 10px;
+            padding-left: 20px !important;
+
+        }
+
+        .p-b-10{
+            padding-bottom: 10px;
+        }
+
+        #mes{
+            font-family: 'Archivo Black', sans-serif;
+            font-weight: bolder;
+            text-align: center;
+            font-size: 30px;
+            position: fixed;
+            top: 0px;
+            right: 5px;
+
+        }
+        #datos{
+            width: 400px;
+            height:100%;
+            background-color: rgb(0,0,0,0.2);      
+            /* background-color: white; */
+            -webkit-box-shadow: 0px 0px 45px -9px rgba(0,0,0,0.75);
+            -moz-box-shadow: 0px 0px 45px -9px rgba(0,0,0,0.75);
+            box-shadow: 0px 0px 45px -9px rgba(0,0,0,0.75);      
+        }
+
+        .center{
+            text-align: center;
+        }
+    </style>
+    <body>
+        <div id="mes">
+            Mes #<span id="numMes">1</span>
+        </div>
+        <div id="datos">
+            <div id="titulo">Simulador <br> Planta de aguacate</div>
+
+            <div class="subtitulo"> Detalles de la planta </div> 
+
+            <div class="contenido">
+                Altura: <span id="altura"> 20 Cm</span> <br>
+                Nro Frutos: <span id="nroFrutos"> 0 </span> <br>
+                Tasa de crecimiento: <span id="altura"> 1 </span> <br>
+                Viva: <span id="altura"> Si </span> <br>
+            </div>  
+
+            <div class="subtitulo"> Simular </div> 
+
+            <div class="contenido center"> 
+                <form>
+                    <div class="input-group p-b-10">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-tint"></i> Agua </span>
+                        <input id="agua" type="number" min="0" class="form-control" name="email" placeholder="Litros" required>
+                    </div>
+                    <div class="input-group p-b-10">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-grain"></i> Abono </span>
+                        <input id="agua" type="number" min="0" class="form-control" name="email" placeholder="Gramos" required >
+                    </div>
+                    <!-- <input type="button" > -->
+                    <button class="btn btn-primary btn-lg" >
+                            <span class="glyphicon glyphicon-play-circle"></span>  Siguiente Mes
+                    </button>
+                </form>
+            </div>   
+            
+            <div class="subtitulo" >Acciones</div>
+            <div class="contenido">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button class="btn btn-danger btn-lg" >
+                                <span class="glyphicon glyphicon-repeat"></span> Reiniciar
+                        </button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button id="estadisticas" class="btn btn-primary btn-lg" >
+                                <span class="glyphicon glyphicon-stats"></span> Estadisticas
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+          <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content" style="width: 730px !important">
+                    <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Estadisticas</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="myDiv" ></div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script src="./js/modelos.js"></script> 
+        <script src="./js/inicio.js"></script>
+    </body>
+</html>
