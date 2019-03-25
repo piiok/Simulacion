@@ -1,6 +1,41 @@
 var aguacate = new Aguacate(); //Simulacion actual
 
+function imagen(){
+    var altura = aguacate.alturas[aguacate.alturas.length - 1];
+    var frutos = aguacate.produccion[aguacate.produccion.length - 1];
+    var str= "./imagenes/";
+
+    //Tipo de planta segun altura
+    if(altura >= 540){
+        if (frutos > 0) {
+            str += "Planta4";
+        } else {
+            str += "Planta3";
+        }
+    }else{
+        if (altura >= 260 && altura < 540) {
+            str += "Planta2";
+        }else{
+            if (altura > 20 && altura < 260 ) {
+                str += "Planta1";
+            } else {
+                if (aguacate.mes == 1 && altura == 20) {
+                    str += "Planta0";
+                }
+            }
+        }
+    }
+
+    //Color de la planta segun pH
+    //En contruccion
+
+    return str+".png";
+}
+
 function actualizar(){
+    src = imagen();
+    $("#planta").attr('src',src);
+    imageZoom("planta", "visor");
     $("#altura").html(" "+aguacate.alturas[aguacate.alturas.length - 1]+" Cm");
     $("#nroFrutos").html(" "+aguacate.produccion[aguacate.produccion.length - 1]);
     $("#tc").html(" "+aguacate.tc);

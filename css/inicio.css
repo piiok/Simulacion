@@ -34,8 +34,8 @@
     left:0px;
     /* border: 1px solid #d4d4d4; */
     /*set the size of the lens:*/
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
     }
 #visor{
     position: fixed;
