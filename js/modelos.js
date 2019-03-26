@@ -228,7 +228,7 @@ var layoutI = {
 		title: 'Tiempo'
 	},
 	yaxis: {
-		title: 'Altura/Produccion'
+		title: 'Altura (CM)/Produccion'
 	}
 };
 
