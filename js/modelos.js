@@ -62,6 +62,10 @@ class Aguacate {
 			} else if (desvAgua[7] < agua && agua <= desvAgua[8]) {
 				this.ph = this.ph * 0.8;
 			}
+		} else if (desvAgua[0] > agua) {
+			this.ph = this.ph * 1.25;
+		} else if (desvAgua[8] < agua) {
+			this.ph = this.ph * 0.75;
 		}
 	}
 
