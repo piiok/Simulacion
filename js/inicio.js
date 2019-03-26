@@ -58,7 +58,7 @@ function reset() {
 
 $(document).ready(function() {
 	$('#preload').fadeOut();
-	$('#body').fadeIn();
+	$('#body').css({'visibility':'visible'});
 	document.getElementById('form').addEventListener('submit', function() {
 		iterar();
 		return false;

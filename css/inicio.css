@@ -29,7 +29,7 @@
     cursor: zoom-in;
 }
 .img-zoom-lens {
-    position:fixed;
+    position:absolute;
     top:-40px;
     left:0px;
     /* border: 1px solid #d4d4d4; */
