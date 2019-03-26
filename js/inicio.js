@@ -7,7 +7,7 @@ function imagen() {
 	var str = './imagenes/';
 	if (aguacate.mes == 0 && altura == 20) {
 		str += 'Planta0';
-	}else{
+	} else {
 		//Tipo de planta segun altura
 		if (altura >= 540) {
 			if (frutos > 0) {
@@ -21,23 +21,23 @@ function imagen() {
 			} else {
 				if (altura > 20 && altura < 260) {
 					str += 'Planta1';
-				} 
+				}
 			}
 		}
 
 		var ph = aguacate.ph;
 
 		if (aguacate.contadorViva >= 3) {
-			str += "-4";
+			str += '-4';
 		} else {
 			//Color de la planta segun pH
-			if(5.0 < ph || ph >= 5.5){
-				str += "-1";
-			}else{
+			if (5.0 < ph || ph >= 5.5) {
+				str += '-1';
+			} else {
 				if (4.0 < ph || ph >= 5.0) {
-					str += "-2";
-				}else{
-					str += "-3";
+					str += '-2';
+				} else {
+					str += '-3';
 				}
 			}
 		}
@@ -48,7 +48,7 @@ function imagen() {
 function actualizar() {
 	src = imagen();
 	$('#planta').attr('src', src);
-	$('#planta').css({'height': 'calc( ( 100% - 70px ) / 3000 * '+aguacate.altura+' + 50px )'});
+	$('#planta').css({ height: 'calc( ( 100% - 70px ) / 3000 * ' + aguacate.altura + ' + 50px )' });
 	imageZoom('planta', 'visor');
 	$('#altura').html(' ' + aguacate.alturas[aguacate.alturas.length - 1] + ' cm');
 	$('#nroFrutos').html(' ' + aguacate.produccion[aguacate.produccion.length - 1]);
@@ -70,8 +70,10 @@ function reset() {
 }
 
 $(document).ready(function() {
-	$('#preload').fadeOut();
-	$('#body').css({'visibility':'visible'});
+	setTimeout(function() {
+		$('#preload').fadeOut();
+		$('#body').css({ visibility: 'visible' });
+	}, 1000);
 	document.getElementById('form').addEventListener('submit', function() {
 		iterar();
 		return false;
