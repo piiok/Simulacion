@@ -27,8 +27,22 @@ function imagen() {
 		}
 	}
 
-	//Color de la planta segun pH
-	//En contruccion
+	var ph = aguacate.ph;
+
+	if (aguacate.contadorViva >= 3) {
+		str += "-4";
+	} else {
+		//Color de la planta segun pH
+		if(5.0 < ph || ph >= 5.5){
+			str += "-1";
+		}else{
+			if (4.0 < ph || ph >= 5.0) {
+				str += "-2";
+			}else{
+				str += "-3";
+			}
+		}
+	}
 
 	return str + '.png';
 }
@@ -36,6 +50,7 @@ function imagen() {
 function actualizar() {
 	src = imagen();
 	$('#planta').attr('src', src);
+	$('#planta').css({'height': 'calc( ( 100% - 70px ) / 3000 * '+aguacate.altura+' + 50px )'});
 	imageZoom('planta', 'visor');
 	$('#altura').html(' ' + aguacate.alturas[aguacate.alturas.length - 1] + ' cm');
 	$('#nroFrutos').html(' ' + aguacate.produccion[aguacate.produccion.length - 1]);
