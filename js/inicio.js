@@ -5,45 +5,43 @@ function imagen() {
 	var altura = aguacate.alturas[aguacate.alturas.length - 1];
 	var frutos = aguacate.produccion[aguacate.produccion.length - 1];
 	var str = './imagenes/';
-
-	//Tipo de planta segun altura
-	if (altura >= 540) {
-		if (frutos > 0) {
-			str += 'Planta4';
-		} else {
-			str += 'Planta3';
-		}
-	} else {
-		if (altura >= 260 && altura < 540) {
-			str += 'Planta2';
-		} else {
-			if (altura > 20 && altura < 260) {
-				str += 'Planta1';
+	if (aguacate.mes == 0 && altura == 20) {
+		str += 'Planta0';
+	}else{
+		//Tipo de planta segun altura
+		if (altura >= 540) {
+			if (frutos > 0) {
+				str += 'Planta4';
 			} else {
-				if (aguacate.mes == 0 && altura == 20) {
-					str += 'Planta0';
+				str += 'Planta3';
+			}
+		} else {
+			if (altura >= 260 && altura < 540) {
+				str += 'Planta2';
+			} else {
+				if (altura > 20 && altura < 260) {
+					str += 'Planta1';
+				} 
+			}
+		}
+
+		var ph = aguacate.ph;
+
+		if (aguacate.contadorViva >= 3) {
+			str += "-4";
+		} else {
+			//Color de la planta segun pH
+			if(5.0 < ph || ph >= 5.5){
+				str += "-1";
+			}else{
+				if (4.0 < ph || ph >= 5.0) {
+					str += "-2";
+				}else{
+					str += "-3";
 				}
 			}
 		}
 	}
-
-	var ph = aguacate.ph;
-
-	if (aguacate.contadorViva >= 3) {
-		str += "-4";
-	} else {
-		//Color de la planta segun pH
-		if(5.0 < ph || ph >= 5.5){
-			str += "-1";
-		}else{
-			if (4.0 < ph || ph >= 5.0) {
-				str += "-2";
-			}else{
-				str += "-3";
-			}
-		}
-	}
-
 	return str + '.png';
 }
 
