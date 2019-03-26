@@ -28,6 +28,7 @@ class Aguacate {
 		this.contadorViva = 0; // contador para saber si esta muerta, si es >=3 la plata esta muerta
 		this.produccion = [ 0 ]; // array con la produccion en cada iteracion
 		this.produccion_total = 0; // produccion total en la vida de la plata
+		this.abono = 250;
 	}
 
 	pH(agua, abono) {
