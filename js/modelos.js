@@ -35,7 +35,6 @@ class Aguacate {
 		const desvAgua = normalDist(idealAgua);
 		const idealAbono = this.mes > 144 ? 12245.2 : 250 + 83.3 * (this.mes - 1);
 		const desvAbono = normalDist(idealAbono);
-		console.log(this.mes, this.contadorViva);
 		this.phAgua(agua, idealAgua, desvAgua);
 		this.phAbono(abono, idealAbono, desvAbono);
 	}

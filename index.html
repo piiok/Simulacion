@@ -14,6 +14,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
         <link rel="stylesheet" href="./css/inicio.css">
+        <link rel="stylesheet" href="./css/preload.css">
 
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> <!-- awesome icons -->
 
@@ -22,103 +23,126 @@
         </style>
     </head>
     <body>
-        <div id="mes">
-            Mes #<span id="numMes">1</span>
-        </div>
-        <div id="datos">
-            <div id="titulo">Simulador <br> Planta de aguacate</div>
-
-            <div class="subtitulo"> Detalles de la planta </div> 
-
-            <div class="contenido">
-                Altura: <span id="altura"> 20 Cm</span> <br>
-                Nro Frutos: <span id="nroFrutos"> 0 </span> <br>
-                Tasa de crecimiento: <span id="tc"> 1 </span> <br>
-                Estado: <span id="vida"> Viva <i class="fas fa-grin-beam"></i></span> <br>
-            </div>  
-
-            <div class="subtitulo"> Simular </div> 
-
-            <div class="contenido center"> 
-                <form onsubmit="return false" id="form">
-                    <div data-toggle="tooltip" data-placement="right" title="Litros" class="input-group p-b-10" id="tool1">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-tint"></i> Agua </span>
-                        <input id="agua" type="number" min="0" class="form-control" placeholder="Litros" required>
-                    </div>
-                    <div data-toggle="tooltip" data-placement="right" title="Gramos" class="input-group p-b-10" id="tool2">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-grain"></i> Abono </span>
-                        <input id="abono" type="number" min="0" class="form-control" placeholder="Gramos" required >
-                    </div>
-                    <!-- <input type="button" > -->
-                    <!-- <a onlclick="iterar()"> -->
-                        <button class="btn btn-primary btn-lg" >
-                                <span class="glyphicon glyphicon-play-circle"></span>  Siguiente Mes
-                        </button>
-                    <!-- </a> -->
-                </form>
-            </div>   
-            
-            <div class="subtitulo" >Acciones</div>
-            <div class="contenido">
-                <div class="row">
-                    <div class="accionesBtns m-b-10">
-                        <button id="resetB"  class="btn btn-danger btn-lg p-b-10 center-block">
-                                <span class="glyphicon glyphicon-repeat"></span> Reiniciar
-                        </button>
-                    </div>
-                    <div class="accionesBtns m-b-10">
-                        <button id="estadisticas" class="btn btn-primary btn-lg p-b-10 center-block" >
-                                <span class="glyphicon glyphicon-stats"></span> Estadisticas
-                        </button>
+        <div id="preload" style="position:fixed; right: calc(50% - 75px); top: calc(50% - 115px);">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="loader">
+                        <div class="loader-inner">
+                            <div class="loading one"></div>
+                        </div>
+                        <div class="loader-inner">
+                            <div class="loading two"></div>
+                        </div>
+                        <div class="loader-inner">
+                            <div class="loading three"></div>
+                        </div>
+                        <div class="loader-inner">
+                            <div class="loading four"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="cielo"></div>
-        <img id="planta" src="./imagenes/Planta0.png" alt="">
-        <div id="visor"></div>
-        <div id="tierra"></div>
-          <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog m2">
-                <!-- Modal content-->
-                <div class="modal-content" >
-                    <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Estadisticas</h4>
+        <div id="body" class="fondo" style="display:none">
+            <div id="mes">
+                Mes #<span id="numMes">0</span>
+            </div>
+            <div id="datos">
+                <div id="titulo">Simulador <br> Planta de aguacate</div>
+    
+                <div class="subtitulo"> Detalles de la planta </div> 
+    
+                <div class="contenido">
+                    Altura: <span id="altura"> 20 Cm</span> <br>
+                    Nro Frutos: <span id="nroFrutos"> 0 </span> <br>
+                    Tasa de crecimiento: <span id="tc"> 1 </span> <br>
+                    Estado: <span id="vida"> Viva <i class="fas fa-grin-beam"></i></span> <br>
+                </div>  
+    
+                <div class="subtitulo"> Simular </div> 
+    
+                <div class="contenido center"> 
+                    <form onsubmit="return false" id="form">
+                        <div data-toggle="tooltip" data-placement="right" title="Litros" class="input-group p-b-10" id="tool1">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-tint"></i> Agua </span>
+                            <input id="agua" type="number" min="0" class="form-control" placeholder="Litros" required>
+                        </div>
+                        <div data-toggle="tooltip" data-placement="right" title="Gramos" class="input-group p-b-10" id="tool2">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-grain"></i> Abono </span>
+                            <input id="abono" type="number" min="0" class="form-control" placeholder="Gramos" required >
+                        </div>
+                        <!-- <input type="button" > -->
+                        <!-- <a onlclick="iterar()"> -->
+                            <button class="btn btn-primary btn-lg" >
+                                    <span class="glyphicon glyphicon-play-circle"></span>  Siguiente Mes
+                            </button>
+                        <!-- </a> -->
+                    </form>
+                </div>   
+                
+                <div class="subtitulo" >Acciones</div>
+                <div class="contenido">
+                    <div class="row">
+                        <div class="accionesBtns m-b-10">
+                            <button id="resetB"  class="btn btn-danger btn-lg p-b-10 center-block">
+                                    <span class="glyphicon glyphicon-repeat"></span> Reiniciar
+                            </button>
+                        </div>
+                        <div class="accionesBtns m-b-10">
+                            <button id="estadisticas" class="btn btn-primary btn-lg p-b-10 center-block" >
+                                    <span class="glyphicon glyphicon-stats"></span> Estadisticas
+                            </button>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <div id="grafica"></div>
-                        <button id="randomB" type="button" class="btn btn-danger center-block" onclick="sRandom()">Generar nueva randomica</button>
+                </div>
+            </div>
+            <div id="cielo"></div>
+            <img id="planta" src="./imagenes/Planta0.png" alt="">
+            <div id="visor"></div>
+            <div id="tierra"></div>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog m2">
+                    <!-- Modal content-->
+                    <div class="modal-content" >
+                        <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Estadisticas</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div id="grafica"></div>
+                            <button id="randomB" type="button" class="btn btn-danger center-block" onclick="sRandom()">Generar nueva randomica</button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" onclick="showRandom()">S. Randomica</button>
+                            <button type="button" class="btn btn-primary" onclick="showIdeal()">S. Ideal</button>
+                            <button type="button" class="btn btn-primary" onclick="showActual()">S. Actual</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="showRandom()">S. Randomica</button>
-                        <button type="button" class="btn btn-primary" onclick="showIdeal()">S. Ideal</button>
-                        <button type="button" class="btn btn-primary" onclick="showActual()">S. Actual</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="confirm" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Reiniciar simulacion</h4>
+                        </div>
+                        <div class="modal-body center">
+                            <p>¿Esta seguro que desea reiniciar la simulacion?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" onclick="reset()" data-dismiss="modal">Si</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="confirm" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Reiniciar simulacion</h4>
-                    </div>
-                    <div class="modal-body center">
-                        <p>¿Esta seguro que desea reiniciar la simulacion?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" onclick="reset()" data-dismiss="modal">Si</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
         <script src="./js/modelos.js"></script> 
         <script src="./js/inicio.js"></script>
