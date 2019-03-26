@@ -30,14 +30,18 @@ function imagen() {
 		if (aguacate.contadorViva >= 3) {
 			str += '-4';
 		} else {
+			console.log(aguacate);
 			//Color de la planta segun pH
-			if (6.6 <= ph || ph > 7.0 || 5.0 < ph || ph >= 5.5) {
+			console.log(ph);
+			console.log((ph >= 6.6 && ph < 7.0));
+			console.log( (ph > 5.0 && ph <= 5.5));
+			if ((ph >= 6.6 && ph < 7.0) || (ph > 5.0 && ph <= 5.5)) {
 				str += '-1';
 			} 
-			if (7.0 <= ph || ph > 8.0 || 4.0 < ph || ph >= 5.0) {
+			if ((ph >= 7.0 && ph < 8.0) || (ph > 4.0  && ph <= 5.0)) {
 				str += '-2';
 			} 
-			if (8.0 <= ph || ph <= 4.0) {
+			if (ph >= 8.0 || ph <= 4.0) {
 				str += '-3';
 			}
 			//Si no cumple con ninguan es ideal, entonces no debe añadira nada. Las plantas sanas no llevan sufijo Ejemplo: Planta1.png
