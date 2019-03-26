@@ -128,7 +128,7 @@ function sRandom() {
 			title: 'Tiempo'
 		},
 		yaxis: {
-			title: 'Altura/Produccion'
+			title: 'Altura (CM)/Produccion'
 		}
 	};
 
@@ -159,7 +159,7 @@ function sActual() {
 			title: 'Tiempo'
 		},
 		yaxis: {
-			title: 'Altura/Produccion'
+			title: 'Altura (CM)/Produccion'
 		}
 	};
 
