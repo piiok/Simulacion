@@ -49,7 +49,8 @@ function imagen() {
 function actualizar() {
 	src = imagen();
 	$('#planta').attr('src', src);
-	$('#planta').css({ height: 'calc( ( 100% - 70px ) / 3000 * ' + aguacate.altura + ' + 50px )' });
+	$('#planta').css({ height: 'calc( ( ( 100% - 70px ) / 3000 ) * ' + (aguacate.alturas[aguacate.alturas.length - 1]-50) + ' + 50px )' });
+	$('#planta').css({left:'calc( 50% + 200px - ' + document.getElementById('planta').clientWidth/2 + 'px )'})
 	imageZoom('planta', 'visor');
 	$('#altura').html(' ' + aguacate.alturas[aguacate.alturas.length - 1] + ' cm');
 	$('#nroFrutos').html(' ' + aguacate.produccion[aguacate.produccion.length - 1]);
