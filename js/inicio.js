@@ -30,11 +30,7 @@ function imagen() {
 		if (aguacate.contadorViva >= 3) {
 			str += '-4';
 		} else {
-			console.log(aguacate);
 			//Color de la planta segun pH
-			console.log(ph);
-			console.log((ph >= 6.6 && ph < 7.0));
-			console.log( (ph > 5.0 && ph <= 5.5));
 			if ((ph >= 6.6 && ph < 7.0) || (ph > 5.0 && ph <= 5.5)) {
 				str += '-1';
 			} 
