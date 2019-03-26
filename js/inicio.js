@@ -20,7 +20,7 @@ function imagen() {
 			if (altura > 20 && altura < 260) {
 				str += 'Planta1';
 			} else {
-				if (aguacate.mes == 1 && altura == 20) {
+				if (aguacate.mes == 0 && altura == 20) {
 					str += 'Planta0';
 				}
 			}
