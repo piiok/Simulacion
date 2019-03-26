@@ -24,6 +24,7 @@ class Aguacate {
 		this.meses = [ 0 ]; // array de tiempo [0, 1, 2, ... 360] (iteracionces)
 		this.mes = 0; //iteracion acual
 		this.ph = 6; // nivel de pH
+		this.abono = 250;
 		this.tc = 1; // tasa de creciemiento (depende del ph en cada iteracion)
 		this.contadorViva = 0; // contador para saber si esta muerta, si es >=3 la plata esta muerta
 		this.produccion = [ 0 ]; // array con la produccion en cada iteracion
@@ -33,7 +34,7 @@ class Aguacate {
 	pH(agua, abono) {
 		const idealAgua = 34;
 		const desvAgua = normalDist(idealAgua);
-		const idealAbono = this.mes > 144 ? 12245.2 : 250 + 83.3 * (this.mes - 1);
+		const idealAbono = this.mes > 144 ? 0 : 83;
 		const desvAbono = normalDist(idealAbono);
 		this.phAgua(agua, idealAgua, desvAgua);
 		this.phAbono(abono, idealAbono, desvAbono);
@@ -97,8 +98,9 @@ class Aguacate {
 
 	simulacion(agua, abono) {
 		this.mes++;
+		this.abono += abono;
 		if (this.contadorViva < 3) {
-			this.pH(agua, abono);
+			this.pH(agua, this.abono);
 			this.Tc();
 			switch (true) {
 				// Etapa crecimiento
@@ -200,11 +202,11 @@ class Aguacate {
 }
 
 var aguacateI = new Aguacate();
-for (let index = 0; index <= 144; index++) {
-	aguacateI.simulacion(34, 250 + index * 83.3);
+for (let index = 1; index <= 144; index++) {
+	aguacateI.simulacion(34, (index == 1 ? -83 : 0) + 83);
 }
 for (let index = 145; index < 360; index++) {
-	aguacateI.simulacion(34, 12245.2);
+	aguacateI.simulacion(34, 0);
 }
 aguacateI.producido();
 

@@ -33,10 +33,10 @@ function imagen() {
 			//Color de la planta segun pH
 			if ((ph >= 6.6 && ph < 7.0) || (ph > 5.0 && ph <= 5.5)) {
 				str += '-1';
-			} 
-			if ((ph >= 7.0 && ph < 8.0) || (ph > 4.0  && ph <= 5.0)) {
+			}
+			if ((ph >= 7.0 && ph < 8.0) || (ph > 4.0 && ph <= 5.0)) {
 				str += '-2';
-			} 
+			}
 			if (ph >= 8.0 || ph <= 4.0) {
 				str += '-3';
 			}
@@ -101,10 +101,10 @@ var dataR, layoutR;
 function sRandom() {
 	aguacateR = new Aguacate();
 	for (let index = 1; index <= 144; index++) {
-		aguacateR.simulacion(randomInRange(28, 40), 250 + (index - 1) * randomInRange(793, 873) / 10);
+		aguacateR.simulacion(randomInRange(28, 40), (index == 1 ? -83 : 0) + randomInRange(83, 90));
 	}
 	for (let index = 145; index <= 360; index++) {
-		aguacateR.simulacion(randomInRange(28, 40), randomInRange(12241.2, 12249.2) / 10);
+		aguacateR.simulacion(randomInRange(28, 40), randomInRange(0, 5));
 	}
 	aguacateR.producido();
 
