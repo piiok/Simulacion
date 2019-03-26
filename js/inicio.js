@@ -31,15 +31,16 @@ function imagen() {
 			str += '-4';
 		} else {
 			//Color de la planta segun pH
-			if (5.0 < ph || ph >= 5.5) {
+			if (6.6 <= ph || ph > 7.0 || 5.0 < ph || ph >= 5.5) {
 				str += '-1';
-			} else {
-				if (4.0 < ph || ph >= 5.0) {
-					str += '-2';
-				} else {
-					str += '-3';
-				}
+			} 
+			if (7.0 <= ph || ph > 8.0 || 4.0 < ph || ph >= 5.0) {
+				str += '-2';
+			} 
+			if (8.0 <= ph || ph <= 4.0) {
+				str += '-3';
 			}
+			//Si no cumple con ninguan es ideal, entonces no debe añadira nada. Las plantas sanas no llevan sufijo Ejemplo: Planta1.png
 		}
 	}
 	return str + '.png';
