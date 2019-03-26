@@ -165,26 +165,30 @@ class Aguacate {
 	}
 
 	producir() {
-		if (this.alturas[this.mes] < 540) {
+		if (this.mes < 300) {
+			if (this.alturas[this.mes] < 540) {
+				this.produccion.push(0);
+			} else if (this.alturas[this.mes] >= 540 && this.alturas[this.mes] < 1750) {
+				if (this.mes % 12 <= 5) {
+					const exito = randomInRange(43, 80) / 100;
+					const produccion = exito * parseInt(812.5 / 5);
+					this.produccion.push(produccion);
+				} else {
+					this.produccion.push(0);
+				}
+				this.aux++;
+			} else if (this.alturas[this.mes] >= 1750 && this.alturas[this.mes] < 3000) {
+				if (this.mes % 12 <= 5) {
+					const exito = randomInRange(20, 43) / 100;
+					const produccion = exito * parseInt(812.5 / 5);
+					this.produccion.push(produccion);
+				} else {
+					this.produccion.push(0);
+				}
+				this.aux++;
+			}
+		} else {
 			this.produccion.push(0);
-		} else if (this.alturas[this.mes] >= 540 && this.alturas[this.mes] < 1750) {
-			if (this.mes % 12 <= 5) {
-				const exito = randomInRange(43, 80) / 100;
-				const produccion = exito * parseInt(812.5 / 5);
-				this.produccion.push(produccion);
-			} else {
-				this.produccion.push(0);
-			}
-			this.aux++;
-		} else if (this.alturas[this.mes] >= 1750 && this.alturas[this.mes] < 3000) {
-			if (this.mes % 12 <= 5) {
-				const exito = randomInRange(20, 43) / 100;
-				const produccion = exito * parseInt(812.5 / 5);
-				this.produccion.push(produccion);
-			} else {
-				this.produccion.push(0);
-			}
-			this.aux++;
 		}
 	}
 
