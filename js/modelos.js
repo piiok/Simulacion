@@ -1,14 +1,14 @@
 function normalDist(media) {
 	normal = [
-		0.00135 * media,
-		0.0214 * media,
-		0.1359 * media,
-		0.3413 * media,
+		media - (1 - 0.00135) * media,
+		media - (1 - 0.0214) * media,
+		media - (1 - 0.1359) * media,
+		media - (1 - 0.3413) * media,
 		media,
-		media + 0.3413 * media,
-		media + 0.1359 * media,
-		media + 0.0214 * media,
-		media + 0.00135 * media
+		media + (1 - 0.3413) * media,
+		media + (1 - 0.1359) * media,
+		media + (1 - 0.0214) * media,
+		media + (1 - 0.00135) * media
 	];
 	return normal;
 }
