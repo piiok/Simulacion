@@ -176,7 +176,6 @@ class Aguacate {
 					const produccion = exito * parseInt(812.5 / 5);
 					this.produccion.push(produccion);
 					this.produccion_total += produccion;
-					console.log('produccion:', produccion);
 				} else {
 					this.produccion.push(0);
 				}
@@ -187,7 +186,6 @@ class Aguacate {
 					const produccion = exito * parseInt(812.5 / 5);
 					this.produccion.push(produccion);
 					this.produccion_total += produccion;
-					console.log('produccion:', produccion);
 				} else {
 					this.produccion.push(0);
 				}
