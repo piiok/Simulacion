@@ -53,7 +53,8 @@ function actualizar() {
 	$('#planta').css({left:'calc( 50% + 200px - ' + document.getElementById('planta').clientWidth/2 + 'px )'})
 	imageZoom('planta', 'visor');
 	$('#altura').html(' ' + aguacate.alturas[aguacate.alturas.length - 1] + ' cm');
-	$('#nroFrutos').html(' ' + aguacate.produccion[aguacate.produccion.length - 1]);
+	$('#tFrutos').html(' ' + parseInt(aguacate.produccion_total));
+	$('#nroFrutos').html(' ' + parseInt(aguacate.produccion[aguacate.produccion.length - 1]));
 	$('#tc').html(' ' + aguacate.tc);
 	vida = aguacate.contadorViva >= 3 ? ' Muerta <i class="fas fa-skull"></i>' : ' Viva <i class="fas fa-grin-beam">';
 	$('#vida').html(' ' + vida);
@@ -62,6 +63,8 @@ function actualizar() {
 
 function iterar() {
 	aguacate.simulacion(parseFloat($('#agua').val()), parseFloat($('#abono').val()));
+	aguacate.producido();
+	console.log(aguacate.produccion_total);
 	actualizar();
 	return false;
 }
