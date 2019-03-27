@@ -66,8 +66,6 @@ function actualizar() {
 
 function iterar() {
 	aguacate.simulacion(parseFloat($('#agua').val()), parseFloat($('#abono').val()));
-	/* aguacate.producido();
-	console.log(aguacate.produccion_total); */
 	actualizar();
 	return false;
 }
