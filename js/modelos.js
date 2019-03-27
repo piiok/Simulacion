@@ -175,6 +175,8 @@ class Aguacate {
 					const exito = randomInRange(43, 80) / 100;
 					const produccion = exito * parseInt(812.5 / 5);
 					this.produccion.push(produccion);
+					this.produccion_total += produccion;
+					console.log('produccion:', produccion);
 				} else {
 					this.produccion.push(0);
 				}
@@ -184,6 +186,8 @@ class Aguacate {
 					const exito = randomInRange(20, 43) / 100;
 					const produccion = exito * parseInt(812.5 / 5);
 					this.produccion.push(produccion);
+					this.produccion_total += produccion;
+					console.log('produccion:', produccion);
 				} else {
 					this.produccion.push(0);
 				}
@@ -191,12 +195,6 @@ class Aguacate {
 			}
 		} else {
 			this.produccion.push(0);
-		}
-	}
-
-	producido() {
-		for (let index = 0; index < this.produccion.length; index++) {
-			this.produccion_total += this.produccion[index];
 		}
 	}
 }
@@ -208,7 +206,6 @@ for (let index = 1; index <= 144; index++) {
 for (let index = 145; index < 360; index++) {
 	aguacateI.simulacion(34, 0);
 }
-aguacateI.producido();
 
 var traceI = {
 	x: aguacateI.meses,

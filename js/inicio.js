@@ -49,8 +49,11 @@ function imagen() {
 function actualizar() {
 	src = imagen();
 	$('#planta').attr('src', src);
-	$('#planta').css({ height: 'calc( ( ( 100% - 70px ) / 3000 ) * ' + (aguacate.alturas[aguacate.alturas.length - 1]-50) + ' + 50px )' });
-	$('#planta').css({left:'calc( 50% + 200px - ' + document.getElementById('planta').clientWidth/2 + 'px )'})
+	$('#planta').css({
+		height:
+			'calc( ( ( 100% - 70px ) / 3000 ) * ' + (aguacate.alturas[aguacate.alturas.length - 1] - 50) + ' + 50px )'
+	});
+	$('#planta').css({ left: 'calc( 50% + 200px - ' + document.getElementById('planta').clientWidth / 2 + 'px )' });
 	imageZoom('planta', 'visor');
 	$('#altura').html(' ' + aguacate.alturas[aguacate.alturas.length - 1] + ' cm');
 	$('#tFrutos').html(' ' + parseInt(aguacate.produccion_total));
@@ -63,8 +66,8 @@ function actualizar() {
 
 function iterar() {
 	aguacate.simulacion(parseFloat($('#agua').val()), parseFloat($('#abono').val()));
-	aguacate.producido();
-	console.log(aguacate.produccion_total);
+	/* aguacate.producido();
+	console.log(aguacate.produccion_total); */
 	actualizar();
 	return false;
 }
@@ -110,7 +113,7 @@ function sRandom() {
 	for (let index = 145; index <= 360; index++) {
 		aguacateR.simulacion(randomInRange(28, 40), randomInRange(0, 5));
 	}
-	aguacateR.producido();
+	// aguacateR.producido();
 
 	var traceR = {
 		x: aguacateR.meses,
@@ -142,7 +145,6 @@ function sRandom() {
 
 function sActual() {
 	$('#randomB').css({ display: 'none' });
-	aguacate.producido();
 	var trace = {
 		x: aguacate.meses,
 		y: aguacate.produccion,
