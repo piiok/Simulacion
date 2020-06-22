@@ -4,6 +4,21 @@ Es un juego en el que es necesario proveer a la planta cierta cantidad de agua y
 La pagina muestra los graficos del progreso en el juego. 
 
 # Imagenes demostrativas
-
-**Escenario ideal**
-<img src="https://github.com/piiok/Simulacion/blob/master/imagenes/ScreenShot-Ideal.png?raw=true" alt="Caso ideal" width="1000" height="300"> <br>
+**Escenario ideal** <br/>
+<img src="https://github.com/piiok/Simulacion/blob/master/imagenes/ScreenShot-Ideal.png?raw=true" alt="Caso ideal" width="600" height="300">
+<br>
+<br/><br/>
+**Escenario no tal ideal 1** <br/>
+<img src="https://github.com/piiok/Simulacion/blob/master/imagenes/ScreenShot.png?raw=true" alt="Caso ideal" width="600" height="300"> 
+<br>
+<br/><br/>
+**Escenario no tal ideal 2** <br/>
+<img src="https://github.com/piiok/Simulacion/blob/master/imagenes/ScreenShot-2.png?raw=true" alt="Caso ideal" width="600" height="300"> 
+<br>
+<br/><br/>
+**Escenario no tal ideal 3** <br/>
+<img src="https://github.com/piiok/Simulacion/blob/master/imagenes/ScreenShot-3.png?raw=true" alt="Caso ideal" width="600" height="300"> 
+<br>
+<br/><br/>
+**Escenario - Planta muerta** <br/>
+<img src="https://github.com/piiok/Simulacion/blob/master/imagenes/ScreenShot-5.png?raw=true" alt="Caso ideal" width="600" height="300">
